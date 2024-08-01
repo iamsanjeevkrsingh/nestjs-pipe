@@ -7,7 +7,7 @@ import {
   Post,
 } from '@nestjs/common';
 import { BookDto } from './dto/book.dto';
-import { BookPipe } from './pipes/book.pipe';
+import { ValidationPipe } from './pipes/book.pipe';
 
 @Controller('book')
 export class BookController {
@@ -20,7 +20,8 @@ export class BookController {
   }
 
   @Post('/add')
-  addBook(@Body(new BookPipe()) book: BookDto): string {
+  addBook(@Body(new ValidationPipe()) book: BookDto): string {
+    console.log('🚀 ~ BookController ~ addBook ~ book:', book);
     return 'add book';
   }
 }
